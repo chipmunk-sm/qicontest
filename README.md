@@ -14,6 +14,7 @@ const QIcon icon = QIcon::fromTheme(name, fallbackIcon); <---- the SVG icon is n
 ```
 ### Qt bug "icon.availableSizes().isEmpty()"
 ## qtbase-opensource-src-5.7.1+dfsg/src/gui/image/qicon.cpp:1209
+```
 QIcon QIcon::fromTheme(const QString &name, const QIcon &fallback)
 {
     QIcon icon = fromTheme(name);
@@ -23,7 +24,7 @@ QIcon QIcon::fromTheme(const QString &name, const QIcon &fallback)
 
     return icon;
 }
-
+```
 ## Qt 5.7.1, quote from src/gui/image/qiconengine.cpp:143
 
 \value AvailableSizesHook Allows to query the sizes of the
