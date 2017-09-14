@@ -10,9 +10,19 @@ Bug affected to Dolphin, Applicaton Menu. Show icon for .desktop file (Icon sect
 ```
 QPixmap KStandardItemListWidget::pixmapForIcon(const QString& name, const QStringList& overlays, int size, QIcon::Mode mode)
 ...
+const QIcon icon = QIcon::fromTheme(name, fallbackIcon); <---- the SVG icon is not displayed for .desktop file (with full path for 'Icon')
 ```
+### Qt bug "icon.availableSizes().isEmpty()"
+## qtbase-opensource-src-5.7.1+dfsg/src/gui/image/qicon.cpp:1209
+QIcon QIcon::fromTheme(const QString &name, const QIcon &fallback)
+{
+    QIcon icon = fromTheme(name);
 
-*if icon.availableSizes().isEmpty() the SVG icon is not displayed for .desktop file
+    if (icon.isNull() || icon.availableSizes().isEmpty())
+        return fallback;
+
+    return icon;
+}
 
 ## Qt 5.7.1, quote from src/gui/image/qiconengine.cpp:143
 
